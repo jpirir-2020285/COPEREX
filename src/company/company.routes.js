@@ -1,6 +1,7 @@
 import { Router } from "express" 
-import { remove, save, update, getCompanies } from "./company.controller.js"
+import { save, update, getCompanies } from "./company.controller.js"
 import { validateJwt } from "../../middlewares/validate.jwt.js"
+import { addCompanyValidator, updateCompanyValidator } from "../../helpers/validators.js"
 
 const api = Router() 
 
@@ -8,20 +9,15 @@ api.get("/", getCompanies)
 
 api.post(
     "/",
-    [validateJwt],
+    [validateJwt, addCompanyValidator],
     save
 ) 
 
 api.put(
     "/update/:id",
-    [validateJwt],
+    [validateJwt, updateCompanyValidator],
     update
 ) 
 
-api.put(
-    "/disable/:id",
-    [validateJwt],
-    remove
-) 
 
 export default api 
