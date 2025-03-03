@@ -5,6 +5,8 @@ import morgan from 'morgan'
 import helmet from 'helmet' 
 import cors from 'cors'
 import authRoutes from '../src/auth/auth.routes.js'
+import companyRoutes from '../src/company/company.routes.js'
+import reportRoutes from '../src/report/report.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
 import { createDefaultAdmin } from '../src/auth/auth.controller.js'
 
@@ -19,7 +21,9 @@ const configs = (app)=>{
 }
 
 const routes = (app)=>{
+    app.use('/v1/report',reportRoutes)
     app.use('/v1/auth', authRoutes)
+    app.use('/v1/company',companyRoutes)
 }
 
 export const initServer = async()=>{
