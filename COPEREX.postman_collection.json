@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "3b0a2308-5391-4758-84ec-6cf0c6ca51c2",
+		"name": "COPEREX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37952140"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\", data.token) "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userLoggin",
+									"value": "jpirir123",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Hola123.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:7777/v1/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "Save Company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "mcdonalds",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Empresa de venta de comida rapida",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Venta de comida",
+									"type": "text"
+								},
+								{
+									"key": "level",
+									"value": "HIGH",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "mcdonalds@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "yearsOfExperience",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:7777/v1/company/",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"v1",
+								"company",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "mcdonalds nuevo",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Empresa de venta de comida rapida nuevo",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Venta de comida rapida",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "mcdonalds2@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:7777/v1/company/update/67c4d236f9a65be709bc1f7d?name=mcdonalds Nuevo&category=Venta de comidaNuevo&description=Empresa de venta de comida rapidaNuevo&contact=mcdonalds2@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"v1",
+								"company",
+								"update",
+								"67c4d236f9a65be709bc1f7d"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "mcdonalds Nuevo"
+								},
+								{
+									"key": "category",
+									"value": "Venta de comidaNuevo"
+								},
+								{
+									"key": "description",
+									"value": "Empresa de venta de comida rapidaNuevo"
+								},
+								{
+									"key": "contact",
+									"value": "mcdonalds2@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "search",
+									"value": "venta de comida",
+									"type": "text"
+								},
+								{
+									"key": "orderBy",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "order",
+									"value": "ascending",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:7777/v1/company/",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"v1",
+								"company",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "Generate Report",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:7777/v1/report/generate",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"v1",
+								"report",
+								"generate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
